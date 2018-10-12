@@ -57,10 +57,10 @@ class Auth extends PureComponent<PropsT, *> {
         <Switch>
           <Redirect exact from={AUTH} to={LOGIN} />
           <Route path={LOGIN} component={Login} />
-          {/* <Route path={REGISTER} component={Register} /> */}
-          {/* <Route path={RESET_PASSWORD} component={ResetPassword} /> */}
-          {/* <Route path={CHANGE_PASSWORD} component={ChangePassword} /> */}
-          {/* <Route path={ACTIVATE_ACCOUNT} component={ActivateAccount} /> */}
+          <Route path={REGISTER} component={Register} />
+          <Route path={RESET_PASSWORD} component={ResetPassword} />
+          <Route path={CHANGE_PASSWORD} component={ChangePassword} />
+          <Route path={ACTIVATE_ACCOUNT} component={ActivateAccount} />
         </Switch>
       </div>
     );

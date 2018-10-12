@@ -5,9 +5,7 @@ import React from "react";
 type PropsT = {
   placeholder?: any,
   type: string,
-  styleOfButton?: any,
   disabledBtn?: boolean,
-  classDecorator?: string,
   icon?: string,
   onClick?: Function,
   iconClass?: string,
