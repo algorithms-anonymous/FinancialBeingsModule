@@ -18,7 +18,7 @@ prompt.start();
 console.log(chalkWarn('WARNING:  Preparing to delete local git repository...'));
 prompt.get(
   [{ name: 'deleteGit', description: 'Delete the git repository?  [Y/n]' }],
-  function(err, result) {
+  (err, result) => {
     var deleteGit = result.deleteGit.toUpperCase();
 
     if (err) {
@@ -28,7 +28,7 @@ prompt.get(
     function updatePackage() {
       console.log(chalkProcessing('Updating package.json settings:'));
 
-      prompt.get(prompts, function(err, result) {
+      prompt.get(prompts, (err, result) => {
         // parse user responses
         // default values provided for fields that will cause npm to complain if left empty
         const responses = [

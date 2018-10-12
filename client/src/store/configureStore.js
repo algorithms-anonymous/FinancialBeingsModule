@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import createSagaMiddleware from 'redux-saga';
@@ -53,9 +54,9 @@ function configureStoreDev(initialState) {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../state/reducer').default; // eslint-disable-line global-require
-      store.replaceReducer(connectRouterHistory(nextRootReducer));
+    module.hot.accept('../state/reducer', () => {
+      const nextReducer = require('../state/reducer').default; // eslint-disable-line global-require
+      store.replaceReducer(nextReducer);
     });
   }
   sagaMiddleware.run(rootSaga);

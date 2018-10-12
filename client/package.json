@@ -11,7 +11,7 @@
     "flow-coverage:open": "concurrently \"cd flow-coverage && http-server -c-1 \" \"open http://127.0.0.1:8080\"",
     "flow": "flow",
     "format": "./node_modules/.bin/prettier --config=\".prettierrc.json\" --write \"webpack.config.prod.js\" \"webpack.config.dev.js\" \"tools/**/*.js\" \"src/**/*.js\" ",
-    "lint-fix": "eslint --fix src/",
+    "lint-fix": "eslint --fix src/ tools/",
     "preinstall": "node tools/nodeVersionCheck.js",
     "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
     "remove-demo": "babel-node tools/removeDemo.js",
@@ -39,31 +39,35 @@
   "license": "MIT",
   "dependencies": {
     "connected-react-router": "4.4.1",
+    "empty": "^0.10.1",
     "object-assign": "4.1.1",
+    "qs": "^6.5.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
+    "react-notifications": "^1.4.3",
     "react-redux": "5.0.7",
     "react-router-dom": "4.3.1",
+    "recompose": "^0.30.0",
     "redux": "4.0.0",
     "redux-actions": "2.6.1",
     "redux-form": "7.4.2",
-    "redux-saga": "0.16.0"
+    "redux-saga": "0.16.0",
+    "react-router-redux": "5.0.0-alpha.6"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0",
-    "@babel/core": "7.0.0",
-    "@babel/node": "7.0.0",
-    "@babel/plugin-proposal-class-properties": "7.0.0",
-    "@babel/plugin-transform-react-constant-elements": "7.0.0",
-    "@babel/polyfill": "7.0.0",
-    "@babel/preset-env": "7.0.0",
-    "@babel/preset-react": "7.0.0",
-    "autoprefixer": "9.1.3",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "9.0.0",
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-eslint": "8.2.6",
     "babel-jest": "23.4.2",
-    "babel-loader": "8.0.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.4.15",
+    "babel-loader": "7.1.5",
+    "babel-plugin-transform-react-constant-elements": "6.23.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.4.14",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-env": "1.7.0",
+    "babel-preset-flow": "6.23.0",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-1": "6.24.1",
+    "autoprefixer": "9.1.3",
     "browser-sync": "2.24.7",
     "chalk": "2.4.1",
     "concurrently": "4.0.1",
@@ -147,40 +151,39 @@
     "env": {
       "development": {
         "presets": [
-          "@babel/preset-env",
-          "@babel/preset-react"
-        ],
-        "plugins": [
-          "@babel/plugin-proposal-class-properties",
-          "react-hot-loader/babel"
+          "env",
+          "react",
+          "stage-1"
         ]
       },
       "production": {
         "presets": [
           [
-            "@babel/preset-env",
+            "env",
             {
-              "targets": {
-                "ie": 9
+              "es2015": {
+                "modules": false
               },
-              "forceAllTransforms": true
+              "targets": {
+                "ie": 9,
+                "uglify": true
+              }
             }
           ],
-          "@babel/preset-react"
+          "react",
+          "stage-1"
         ],
         "plugins": [
-          "@babel/plugin-proposal-class-properties",
-          "@babel/plugin-transform-react-constant-elements",
+          "react-hot-loader/babel",
+          "transform-react-constant-elements",
           "transform-react-remove-prop-types"
         ]
       },
       "test": {
         "presets": [
-          "@babel/preset-env",
-          "@babel/preset-react"
-        ],
-        "plugins": [
-          "@babel/plugin-proposal-class-properties"
+          "env",
+          "react",
+          "stage-1"
         ]
       }
     }
