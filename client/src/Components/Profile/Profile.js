@@ -24,10 +24,10 @@ class Profile extends Component {
           {({loading, error, data}) => {
             if(loading) return "Please wait, loading in progress..";
             if(error) return `Error! ${error.message}`;
-            const data = data.financialBeings_FinancialBeingsByID;
+            const {financialBeings_FinancialBeingsByID} = data;
             return (
               <div>
-                <Typography variant="h4" gutterBottom>{data.name}</Typography>
+                <Typography variant="h4" gutterBottom>{financialBeings_FinancialBeingsByID.name}</Typography>
               </div>
             )
           }}
